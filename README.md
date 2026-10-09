@@ -1,34 +1,56 @@
-## Usage
+# SolidStart Template
 
-Those templates dependencies are maintained via [pnpm](https://pnpm.io) via `pnpm up -Lri`.
+A starter template for [bolt.diy](https://github.com/stackblitz-labs/bolt.diy).
 
-This is the reason you see a `pnpm-lock.yaml`. That being said, any package manager will work. This file can be safely be removed once you clone a template.
+## Purpose
+
+This template is designed for use with **<https://github.com/stackblitz-labs/bolt.diy>**. bolt.diy fetches
+these files at runtime and imports them into a fresh WebContainer project when you ask for a Solid project,
+so everything here needs to install and build with no extra setup.
+
+Modified by [Dustin Loring](https://github.com/Dustinwloring1988) (Dustinwloring1988) in October 2026.
+
+## Stack
+
+| Package | Version |
+| --- | --- |
+| Vite | ^8.3.4 |
+| Tailwind CSS | ^4.3.3 |
+| TypeScript | ^6.0.3 |
+| Solid JS | ^1.9.17 |
+
+Node 20 or newer is required.
+
+## Commands
 
 ```bash
-$ npm install # or pnpm install or yarn install
+npm install   # install dependencies
+npm run dev   # vite — dev server
+npm run build # vite build — production build
+npm run serve # vite preview — local preview server
 ```
 
-### Learn more on the [Solid Website](https://solidjs.com) and come chat with us on our [Discord](https://discord.com/invite/solidjs)
+## About this template
 
-## Available Scripts
+A Vite + Solid starter with Tailwind CSS 4 configured. `vite-plugin-solid` provides the Solid integration
+with Vite. `tailwind.config.ts` uses the new CSS-first `@theme` syntax. The `App` component is the root
+Solid component rendered via Vite.
 
-In the project directory, you can run:
+## Upgraded to Vite 8, Tailwind CSS 4, Solid 1.9.17 (October 2026)
 
-### `npm run dev` or `npm start`
+Moved from Vite 5, Tailwind CSS 3, and Solid 1.8.x. Each step was verified with `npm install` and
+`npm run build`:
+- Vite: 5 → 6 → 7 → 8
+- Tailwind CSS: 3.4.x → 4.3.3 (Vite 8 peer requires ^4.3.3)
+- Solid: 1.8.x → 1.9.17 (latest stable 1.x)
+- TypeScript: ~5.5.0 → ^6.0.3 (Vite 8 + TW 4 peer range)
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Tailwind CSS 4's `@theme` syntax replaced the old `tailwind.config.js` with CSS imports, which required
+updating `index.css` and `vite.config.ts`. The `typescript` was also updated to ^6.0.3 because Vite 8 +
+Tailwind CSS 4's peer range is `>=6.0 <7.0`.
 
-The page will reload if you make edits.<br>
+## Verification
 
-### `npm run build`
-
-Builds the app for production to the `dist` folder.<br>
-It correctly bundles Solid in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-## Deployment
-
-You can deploy the `dist` folder to any static host provider (netlify, surge, now, etc.)
+- `npm install` and `npm run build` pass
+- Confirmed the dev server starts and HMR works with Tailwind classes
+- `npm run build` produces a production build with Tailwind styles extracted
